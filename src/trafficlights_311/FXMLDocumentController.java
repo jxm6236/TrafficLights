@@ -10,7 +10,12 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -19,12 +24,23 @@ import javafx.scene.control.Label;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    private Label label;
+    private Text greenLabel, yellowLabel, redLabel;
+    
+    @FXML
+    private Slider greenSlide, yellowSlide, redSlide;
+    
+    @FXML
+    private Button start, pause;
+    
+    @FXML
+    private Circle green, greenOff, yellow, yellowOff, red, redOff;
+    
+    @FXML
+    private GridPane gr;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+      
     }
     
     @Override
