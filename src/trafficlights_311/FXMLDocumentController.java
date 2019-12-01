@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.animation.SequentialTransition;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -55,11 +57,22 @@ public class FXMLDocumentController implements Initializable {
       
     }
     
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //Bind disabled properties
+        disableBtn = new SimpleBooleanProperty(false);
+        start.disableProperty().bind(disableBtn);
+        pause.disableProperty().bind(disableBtn.not());
+        
+        //Create Binds
+        greenValue = new SimpleDoubleProperty();
+        yellowVal = new SimpleDoubleProperty();
+        redValue = new SimpleDoubleProperty();
+        
+        //Bind Action
+        greenValue.bind(greenSlide.valueProperty());
+        yellowVal.bind(yellowSlide.valueProperty());
+        redValue.bind(redSlide.valueProperty());
         
     }    
     
