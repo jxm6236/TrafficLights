@@ -8,6 +8,7 @@ package trafficlights_311;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.SequentialTransition;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -73,6 +74,20 @@ public class FXMLDocumentController implements Initializable {
         greenValue.bind(greenSlide.valueProperty());
         yellowVal.bind(yellowSlide.valueProperty());
         redValue.bind(redSlide.valueProperty());
+        
+        //Set Testing Properties
+        greenLabel.textProperty().bind(Bindings.format("%3.0f", redValue).concat(" Seconds"));
+        yellowLabel.textProperty().bind(Bindings.format("%3.0f", redValue).concat(" Seconds"));
+        redLabel.textProperty().bind(Bindings.format("%3.0f", redValue).concat(" Seconds"));
+        
+        //Light setup to fit grid
+        greenOff.radiusProperty().bind(green.radiusProperty());
+        yellowOff.radiusProperty().bind(yellow.radiusProperty());
+        redOff.radiusProperty().bind(red.radiusProperty());
+        
+        green.radiusProperty().bind(gr.heightProperty().divide(8));
+        yellow.radiusProperty().bind(gr.heightProperty().divide(8));
+        red.radiusProperty().bind(gr.heightProperty().divide(8));
         
     }    
     
