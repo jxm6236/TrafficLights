@@ -7,7 +7,9 @@ package trafficlights_311;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
 import javafx.animation.SequentialTransition;
+import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -22,6 +24,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 /**
  *
@@ -88,7 +91,58 @@ public class FXMLDocumentController implements Initializable {
         green.radiusProperty().bind(gr.heightProperty().divide(8));
         yellow.radiusProperty().bind(gr.heightProperty().divide(8));
         red.radiusProperty().bind(gr.heightProperty().divide(8));
-        
     }    
+    
+    @FXML
+    protected void startAnimation() {
+        sequence.play();
+        disableBtn.set(true);
+    }
+    
+    @FXML
+    protected void pauseAnimation() {
+        sequence.pause();
+        disableBtn.set(false);
+    }
+    
+    //Build Aniumation
+    private void buildAnimation() {
+        //yellow light flashing 
+        SequentialTransition yellowFlash = new SequentialTransition(
+        new Timeline(
+            new KeyFrame(Duration.seconds(0), e -> light(yellow)),
+            new KeyFrame(Duration.seconds(blinkCycle/2), e -> darken(yellow)),
+            new KeyFrame(Duration.seconds(blinkCycle))    
+        ));
+        
+         //Finish up setup
+        yellowFlash.setOnFinished(e -> darken(yellow));
+        yellowFlash.setCycleCount((int)Math.round(yellowVal.divide(blinkCycle).get()));
+        
+        //Other sequence 
+        sequence = new SequentialTransition(
+                new Timeline(
+                    new KeyFrame(Duration.seconds(0), e -> light(green)),
+                    new KeyFrame(Duration.seconds(greenValue.get()), e -> darken(green))),
+                new Timeline(
+                    new KeyFrame(Duration.seconds(0), e -> light(red)),
+                    new KeyFrame(Duration.seconds(redValue.get()), e -> darken(red))),
+                yellowFlash
+        );
+        
+        //Rebuild sequence and start up
+        sequence.setOnFinished(e -> {buildAnimation(); sequence.play();});
+        
+        //Reset cycle
+        sequence.setCycleCount(1);   
+    }
+    
+    private void light(Circle target) {
+        target.setOpacity(1);
+    }
+    
+    private void darken(Circle target) {
+        target.setOpacity(lowOpacity);
+    }
     
 }
