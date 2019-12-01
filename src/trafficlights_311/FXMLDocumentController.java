@@ -7,6 +7,9 @@ package trafficlights_311;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.SequentialTransition;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +26,7 @@ import javafx.scene.text.Text;
  */
 public class FXMLDocumentController implements Initializable {
     
+    //FXML Variables
     @FXML
     private Text greenLabel, yellowLabel, redLabel;
     
@@ -38,14 +42,25 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private GridPane gr;
     
-    @FXML
+    //yellow light cycle
+    private final double blinkCycle = 1;
+    private final double lowOpacity = 0.5;
+    
+    //VAriables
+    private DoubleProperty greenValue, yellowVal, redValue;
+    private BooleanProperty disableBtn;
+    private SequentialTransition sequence;
+    
     private void handleButtonAction(ActionEvent event) {
       
     }
     
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }    
     
 }
