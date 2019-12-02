@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane id="GridPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trafficlights_311.FXMLDocumentController">
+    <children>
+      <Circle fx:id="redBack" radius="75.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" />
+      <Circle fx:id="redLight" fill="RED" radius="75.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" />
+      <Circle fx:id="yellowBack" layoutX="85.0" layoutY="91.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Circle fx:id="yellowLight" fill="YELLOW" radius="75.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Circle fx:id="greenBack" layoutX="310.0" layoutY="91.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Circle fx:id="greenLight" fill="LIME" radius="75.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Button fx:id="playButton" mnemonicParsing="false" onAction="#startAnimation" text="Play" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets right="25.0" />
+         </GridPane.margin>
+      </Button>
+    </children>
+    
+    
+</GridPane>
