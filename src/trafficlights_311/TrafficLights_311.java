@@ -19,7 +19,7 @@ public class TrafficLights_311 extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXML_Lights.fxml"));
         
         Scene scene = new Scene(root);
         
